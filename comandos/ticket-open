@@ -1,0 +1,28 @@
+const { Client, Message } = require('discord.js')
+
+module.exports = {
+    name : 'ticket',
+    run : async(client, message) => {
+        const ch = message.guild.channels.cache.find(ch => ch.name === message.author.id)
+        if(ch) return message.channel.send('Você já tem um ticket aberto.')
+        message.guild.channels.create(`${message.author.id}`, {
+            type : 'text',
+            parent : '820034292519403562', // id da categoria que o ticket sera criado
+            permissionOverwrites : [
+                {
+                    id : message.guild.id,
+                    deny : ['VIEW_CHANNEL']
+                },
+                {
+                    id : message.author.id,
+                    allow : ['VIEW_CHANNEL', 'SEND_MESSAGES', 'ADD_REACTIONS', 'ATTACH_FILES']
+                }
+            ]
+        }).then(async channel=> {
+            message.reply(`clique em <#${channel.id}> para ver seu ticket`)
+            channel.send(`${message.author}, bem vindo ao seu ticket! Pode já explicar seu problema?
+            
+            *Para fechar o ticket, digite rz/close*`)
+        })
+    }
+}
