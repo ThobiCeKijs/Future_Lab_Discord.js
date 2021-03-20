@@ -1,0 +1,9 @@
+client.on('message', msg => {
+	if (msg.content === `<@${client.user.id}>`)
+		msg.channel.send('**Meu prefixo é **`rz/`');
+});
+
+client.on('message', msg => {
+	if (msg.content === `<@${client.user.id}>`)
+		msg.channel.send('**Meu prefixo é **`rz/`');
+});
