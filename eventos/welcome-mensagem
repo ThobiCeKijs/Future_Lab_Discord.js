@@ -1,0 +1,5 @@
+client.on("guildMemberAdd", member => {
+  const welcome = member.guild.channels.cache.find(ch => ch.name === "Nome do Cargo")
+
+  welcome.send(`Bem vindo ${member.user} venha bater um papo com alguém! Antes leia as regras para evitar punições ok?!`)
+})
